@@ -182,7 +182,7 @@ int main() {
 	tests.push_back(mr1->getCoupons().size() == 3);
 
 	// Test 33-34-35: Operateur -=
-	tests.push_back(&(*mr1 -= c2) == mr1);
+	tests.push_back(&(*mr1 -= c2) == mr1); //fonction remove_if dans -= parcours bien le conteneur et retourne vrai mais ne retire pas l'élément 
 	tests.push_back(mr1->getCoupons().size() == 2
 		&& mr1->getCoupons()[0] == c1
 		&& mr1->getCoupons()[1] == c1);

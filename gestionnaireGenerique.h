@@ -44,8 +44,9 @@ template<typename T, typename C, typename FoncteurAjouter>
 C GestionnaireGenerique<T,C,FoncteurAjouter>::getConteneur() const { return conteneur_; }
 
 template<typename T, typename C, typename FoncteurAjouter>
-void GestionnaireGenerique<T, C, FoncteurAjouter>::ajouter(T t) { FoncteurAjouter foncteur(conteneur_); 
-foncteur(t);
+void GestionnaireGenerique<T, C, FoncteurAjouter>::ajouter(T t) { 
+	FoncteurAjouter foncteur(conteneur_); 
+	foncteur(t);
 } 
 
 template<typename T, typename C, typename FoncteurAjouter>

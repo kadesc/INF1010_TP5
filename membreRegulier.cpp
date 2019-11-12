@@ -36,7 +36,7 @@ Membre& MembreRegulier::operator+=(Coupon* coupon)
 
 Membre& MembreRegulier::operator-=(Coupon* coupon)
 {
-	remove_if(coupons_.begin(), coupons_.end(), [&](Coupon* coupon1) {
+	remove_if(coupons_.begin(), coupons_.end(), [&](Coupon* coupon1) { 
 		return coupon1 == coupon; 
 		});
 

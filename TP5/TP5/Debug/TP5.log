@@ -1,0 +1,11 @@
+﻿  main.cpp
+C:\Users\Kassandra\Desktop\INF1010_TP5\INF1010_TP5\main.cpp(313,155): warning C4244:  'argument' : conversion de 'double' en 'int', perte possible de données
+C:\Users\Kassandra\Desktop\INF1010_TP5\INF1010_TP5\main.cpp(316,147): warning C4244:  'argument' : conversion de 'double' en 'int', perte possible de données
+C:\Users\Kassandra\Desktop\INF1010_TP5\INF1010_TP5\main.cpp(332,134): warning C4244:  'argument' : conversion de 'double' en 'int', perte possible de données
+C:\Users\Kassandra\Desktop\INF1010_TP5\INF1010_TP5\main.cpp(334,126): warning C4244:  'argument' : conversion de 'double' en 'int', perte possible de données
+C:\Users\Kassandra\Desktop\INF1010_TP5\INF1010_TP5\main.cpp(348,134): warning C4244:  'argument' : conversion de 'double' en 'int', perte possible de données
+C:\Users\Kassandra\Desktop\INF1010_TP5\INF1010_TP5\main.cpp(352,155): warning C4244:  'argument' : conversion de 'double' en 'int', perte possible de données
+C:\Users\Kassandra\Desktop\INF1010_TP5\INF1010_TP5\main.cpp(370,158): warning C4244:  'argument' : conversion de 'double' en 'int', perte possible de données
+C:\Users\Kassandra\Desktop\INF1010_TP5\INF1010_TP5\main.cpp(377,141): warning C4244:  'argument' : conversion de 'double' en 'int', perte possible de données
+C:\Users\Kassandra\Desktop\INF1010_TP5\INF1010_TP5\main.cpp(387,141): warning C4244:  'argument' : conversion de 'double' en 'int', perte possible de données
+  TP5.vcxproj -> C:\Users\Kassandra\Desktop\INF1010_TP5\INF1010_TP5\TP5\Debug\TP5.exe
