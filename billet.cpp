@@ -105,4 +105,8 @@ void Billet::afficher(ostream& o) const
 	o << "\t\t\t" << setw(11) << "- Trajet" << ": " << od_ << endl;
 }
 
-//todo operateur<<
+
+ostream& operator<<(ostream& o, Billet const* billet) {
+	billet->afficher(o);
+	return o; 
+}

@@ -16,21 +16,15 @@ Membre::Membre(const string& nom) :
 {
 }
 
-//todo
 Membre::Membre(const Membre& membre) :
 	nom_(membre.nom_)
 {
-	for (size_t i = 0; i < membre.billets_.size(); ++i) {
-		billets_.push_back(membre.billets_[i]->clone());
-	}
+	copy(membre.billets_.begin(),membre.billets_.end(), back_inserter(billets_));
 }
 
-//todo
 Membre::~Membre()
 {
-	for (size_t i = 0; i < billets_.size(); ++i) {
-		delete billets_[i];
-	}
+	billets_.erase(billets_.begin(), billets_.end());
 }
 
 string Membre::getNom() const
@@ -48,18 +42,20 @@ void Membre::setNom(const string& nom)
 	nom_ = nom;
 }
 
-//todo implemente trouverBillet() signature dans le .h
 
-//todo
+vector<Billet*>::iterator Membre::trouverBillet(const string& pnr) {
+	return find_if(billets_.begin(), billets_.end(), [&](Billet* billet) {
+		return billet->getPnr()==pnr;
+		});
+}
+
+
+
 void Membre::utiliserBillet(const string& pnr)
 {
 	int indexTrouve = -1;
-	for (size_t i = 0; i < billets_.size(); ++i) {
-		if (billets_[i]->getPnr() == pnr) {
-			indexTrouve = i;
-			break;
-		}
-	}
+	auto it = trouverBillet(pnr);
+	indexTrouve = distance(billets_.begin(), it);
 
 	if (indexTrouve == -1) {
 		cout << "Le billet n'est pas trouve" << endl;
@@ -73,9 +69,7 @@ void Membre::utiliserBillet(const string& pnr)
 		}
 	}
 
-	delete billets_[indexTrouve];
-	billets_[indexTrouve] = billets_[billets_.size() - 1];
-	billets_.pop_back();
+	billets_.erase(it);
 }
 
 void Membre::ajouterBillet(Billet* billet)
@@ -95,34 +89,26 @@ bool operator==(const string& nomMembre, const Membre& membre)
 }
 
 
-//todo
 Membre& Membre::operator=(const Membre& membre)
 {
 	if (this != &membre) {
 		nom_ = membre.nom_;
 
-		for (size_t i = 0; i < billets_.size(); ++i) {
-			delete billets_[i];
-		}
-
+		billets_.erase(billets_.begin(), billets_.end()); 
 		billets_.clear();
 
-		for (size_t i = 0; i < membre.billets_.size(); ++i) {
-			billets_.push_back(membre.billets_[i]->clone());
-		}
+		copy(membre.billets_.begin(), membre.billets_.end(), back_inserter(billets_));
 	}
 
 	return *this;
 }
 
 
-//todo
 void Membre::afficher(ostream& o) const
 {
 	o << setfill(' ');
 	o << "- Membre " << nom_ << ":" << endl;
 	o << "\t" << "- Billets :" << endl;
-	for (size_t i = 0; i < billets_.size(); ++i) {
-		billets_[i]->afficher(o);
-	}
+
+	copy(billets_.begin(), billets_.end(), ostream_iterator<Billet*>(o));
 }

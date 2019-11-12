@@ -34,16 +34,11 @@ Membre& MembreRegulier::operator+=(Coupon* coupon)
 	return *this;
 }
 
-//todo
 Membre& MembreRegulier::operator-=(Coupon* coupon)
 {
-	for (size_t i = 0; i < coupons_.size(); ++i) {
-		if (coupons_[i] == coupon) {
-			coupons_[i] = coupons_[coupons_.size() - 1];
-			coupons_.pop_back();
-			return *this;
-		}
-	}
+	remove_if(coupons_.begin(), coupons_.end(), [&](Coupon* coupon1) {
+		return coupon1 == coupon; 
+		});
 
 	return *this;
 }
@@ -87,13 +82,11 @@ void MembreRegulier::acheterCoupon(Coupon* coupon)
 }
 
 
-//todo
 void MembreRegulier::afficher(ostream& o) const
 {
 	Membre::afficher(o);
 	o << "\t" << "- Points : " << points_ << endl;
 	o << "\t" << "- Coupons :" << endl;
-	for (size_t i = 0; i < coupons_.size(); ++i) {
-		coupons_[i]->afficher(o);
-	}
+
+	copy(coupons_.begin(), coupons_.end(), ostream_iterator<Coupon*>(o));
 }

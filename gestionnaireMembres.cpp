@@ -47,40 +47,58 @@ double GestionnaireMembres::calculerRevenu() const
 		for_each(m.second->getBillets().begin(), m.second->getBillets().end(), [&revenu](Billet* billet) {
 			revenu += billet->getPrix(); });
 		});
-
-	//TODO
-	/*double revenu = 0;
-	for (size_t i = 0; i < membres_.size(); ++i) {
-		for (size_t j = 0; j < membres_[i]->getBillets().size(); ++j) {
-			revenu += membres_[i]->getBillets()[j]->getPrix();
-		}
-	}
-
-	return revenu;
-	8*/
+	return revenu; 
 }
+
 
 int GestionnaireMembres::calculerNombreBilletsEnSolde() const
 {
-	//TODO
-	int nbBilletsSolde = 0;
-	for (size_t i = 0; i < membres_.size(); ++i) {
-		for (size_t j = 0; j < membres_[i]->getBillets().size(); ++j) {
-			if (dynamic_cast<Solde*>(membres_[i]->getBillets()[j])) {
+	int nbBilletsSolde = 0; 
+	for_each(conteneur_.begin(), conteneur_.end(), [&nbBilletsSolde](pair<string, Membre*> m) {
+		for_each(m.second->getBillets().begin(), m.second->getBillets().end(), [&nbBilletsSolde](Billet* billet) {
+			if (dynamic_cast<Solde*>(billet)) { 
 				++nbBilletsSolde;
 			}
-		}
-	}
-
+			});
+		});
 	return nbBilletsSolde;
 }
 
+
+Billet* GestionnaireMembres::getBilletMin(string nomMembre) const {
+
+	vector<Billet*> it = conteneur_.at(nomMembre)->getBillets();
+
+	auto min = min_element(it.begin(), it.end(), [&](Billet* billet1, Billet* billet2) {
+		return billet1->getPrix() < billet2->getPrix();
+	});
+	return *min; 
+}
+
+
+Billet* GestionnaireMembres::getBilletMax(string nomMembre) const {
+
+	vector<Billet*> it = conteneur_.at(nomMembre)->getBillets();
+
+	auto max = max_element(it.begin(), it.end(), [&](Billet* billet1, Billet* billet2) {
+		return billet1->getPrix() > billet2->getPrix();
+		});
+	return *max;
+}
+
+
+vector<Billet*> GestionnaireMembres::trouverBilletParIntervallle(Membre* membre, double prixInf, double prixSup) const {
+	vector<Billet*> vec;
+	copy_if(membre->getBillets().begin(), membre->getBillets().end(), back_inserter(vec), IntervallePrixBillet(prixInf, prixSup));
+	return vec; 
+}
+
+
 void GestionnaireMembres::afficher(ostream& o) const
 {
-	//TODO
 	o << "=================== ETAT ACTUEL DU PROGRAMME ==================\n\n";
 
-	for (size_t i =0 ; i<membres_.size() ; ++i) {
-		membres[i]->afficher(o);
-	}
+	for_each(conteneur_.begin(), conteneur_.end(), [&o](pair<string, Membre*> m) {
+		m.second->afficher(o);
+		});
 }

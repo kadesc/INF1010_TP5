@@ -69,4 +69,7 @@ void Coupon::afficher(ostream& o) const
 	o << "\t\t- Coupon " << code_ << ". Rabais : " << rabais_ << "." << endl;
 }
 
-//todo operateur<<
+ostream& operator<<(ostream& o, Coupon* c) {
+	c->afficher(o);
+	return o; 
+}

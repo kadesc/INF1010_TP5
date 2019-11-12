@@ -8,6 +8,7 @@
 #define MEMBRE_REGULIER_H
 
 #include "membre.h"
+#include <algorithm>
 
 class MembreRegulier : public Membre {
 public:

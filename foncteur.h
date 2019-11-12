@@ -29,12 +29,16 @@ private:
 };
 
 
+
 class AjouterMembre
 {
 public:
 	AjouterMembre(map<string, Membre*>& conteneur) { conteneur_ = conteneur;}
 	map<string, Membre*> operator()(pair<string, Membre*> membre) {
-		if (find(conteneur_.begin(), conteneur_.end(), membre) == conteneur_.end()) {
+		if (find_if(conteneur_.begin(), conteneur_.end(), [&](pair<string, Membre*> m) {
+			return m == membre;
+			}) == conteneur_.end()) 
+		{
 			conteneur_.insert(membre);
 		}
 		return conteneur_;

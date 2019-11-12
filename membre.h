@@ -11,6 +11,7 @@
 #include <vector>
 #include <iterator> 
 #include <iomanip>
+#include <algorithm>
 
 #include "flightPass.h"
 #include "billetRegulier.h"
