@@ -16,7 +16,7 @@
 class AjouterCoupon
 {
 public: 
-	AjouterCoupon(vector<Coupon*>& conteneur) { copy(conteneur.begin(), conteneur.end(), conteneur_.begin()); }
+	AjouterCoupon(vector<Coupon*>& conteneur) { copy(conteneur.begin(), conteneur.end(),back_inserter(conteneur_)); }
 	vector<Coupon*> operator()(Coupon* coupon) {
 		if (find(conteneur_.begin(), conteneur_.end(), coupon) == conteneur_.end()) {
 			conteneur_.push_back(coupon);

@@ -214,7 +214,7 @@ int main() {
 
 	// Test 39-40 acheter coupons Membre Premium
 	mp1->acheterCoupon(c3);
-	tests.push_back(mp1->getCoupons().size() == 0);
+ 	tests.push_back(mp1->getCoupons().size() == 0);
 
 
 	mp1->modifierPoints(632);
@@ -321,7 +321,7 @@ int main() {
 		&& john->getBillets()[0]->getPrix() == 1000
 		&& john->getBillets()[0]->getNomPassager() == "John"
 		&& john->getPoints() == 150);
-	tests.push_back(marc->getBillets().size() == 2
+	tests.push_back(marc->getBillets().size() == 2 
 		&& marc->getBillets()[0]->getPrix() == 2000	
 		&& marc->getBillets()[0]->getNomPassager() == "Marc"
 		&& marc->getBillets()[1]->getPrix() == 1600

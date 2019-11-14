@@ -54,8 +54,8 @@ double GestionnaireMembres::calculerRevenu() const
 int GestionnaireMembres::calculerNombreBilletsEnSolde() const
 {
 	int nbBilletsSolde = 0; 
-	for_each(conteneur_.begin(), conteneur_.end(), [&nbBilletsSolde](pair<string, Membre*> m) {
-		for_each(m.second->getBillets().begin(), m.second->getBillets().end(), [&nbBilletsSolde](Billet* billet) {
+	for_each(conteneur_.begin(), conteneur_.end(), [&](pair<string, Membre*> m) {
+		for_each(m.second->getBillets().begin(), m.second->getBillets().end(), [&](Billet* billet) {
 			if (dynamic_cast<Solde*>(billet)) { 
 				++nbBilletsSolde;
 			}
